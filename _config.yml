@@ -3,19 +3,19 @@
 # # # # # # # # # # # # #
 
 # Basic
-name:               "Kiko Plus"
+name:               "임덕현!!"
 
 
 
 author:
-  name:             your-name
-  facebook:         your-id
+  name:             임덕현
+  facebook:         ldh881113
   twitter:          your-id
-  github:           your-id
+  github:           ldh881113
   linkedin:         your-id
   medium:           your-id
   tumblr:           your-id
-  email:            your-id@your-email.com
+  email:            deokhyeon.lim@nhnent.com
 
 # Google-analytics
 google-analytics:
@@ -23,11 +23,11 @@ google-analytics:
 
 # Disqus
 disqus:
-  id:               "your-id"
+  id:               "ldh881113"
 
 # URL
 #url:                "https://AWEEKJ.github.io" # the base hostname & protocol for your site
-url:                "http://localhost:4000" # use this url when develop
+url:                "http://ldh881113.github.io" # use this url when develop
 baseurl:            "" # the subpath of your site, e.g. /blog
 
 
@@ -53,7 +53,7 @@ nav:
   - name:           "Tags"
     url:            "/tags"
   - name:           "Github"
-    url:            "https://github.com/AWEEKJ/Kiko-plus"
+    url:            "https://github.com/ldh881113"
 
 
 
