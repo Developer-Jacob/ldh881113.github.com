@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[트러블 슈팅] org apache maven plugin war warmojo 에러"
+title: "[트러블 슈팅] org.apache.maven.plugin.war.warmojo 에러"
 description: "메이븐 초기 설치 시 pom.xml에서 발생하는 org apache maven plugin war warmojo 에러"
 date: 2017-01-21
 tags: [maven, 메이븐, 루키교육, 개발, 트러블 슈팅]
