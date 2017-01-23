@@ -34,3 +34,7 @@ description='JSP Expression Language (표현언어, 익스프레스 언어, EL �
 #### jsp 내부에서만 사용가능
 * jsp내부에서 사용 가능 한 문법이다. 즉 jsp내부에 명시된 자바 스크립트에서도 EL을 통해서 값을 가져 올 수 있다.
 * But 동일한 형태의 문법을 js파일에서는 활용할 수 없다. 
+
+![image](https://github.com/ldh881113/ldh881113.github.com/blob/master/images/EL_test1.png "test_1")
+![image](https://github.com/ldh881113/ldh881113.github.com/blob/master/images/EL_test2.png "test_1")
+![image](https://github.com/ldh881113/ldh881113.github.com/blob/master/images/EL_result1.png "test_1")
