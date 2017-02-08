@@ -1,0 +1,102 @@
+---
+layout: post
+title: "[코딩] DAO TEST CODE작성" 
+description: "DAO파일에서 테스트 코드를 작성하는 방법"
+date: 2017-02-08
+tags: [spring, 스프링, test, tcode, 테스트 코드]
+comments: true
+share: true
+---
+
+# Comment DAO 테스트
+
+## 테스트를 수행하기전 setup
+
+DAO에서 테스트 코드를 작성하는 경우는 DB와 연관이 있다. 따라서 값이 제대로 전달되고 돌아오는 부분을 테스트 하는 것이다.
+ 이 방법에는 2가지가 있다. 실제 Test DB를 생성하여 테스트하는 방법과 Mock를 통해 예상값을 설정해 Test하는 방법이 있다. 후자로 이루어진 코드이다.
+
+
+
+```
+  @Before
+  public void setUp() {
+    setCommentsAnswer = new Answer<Integer>(){
+      @Override
+      public Integer answer(InvocationOnMock invocation) throws Throwable {
+        Comment paramComment = (Comment)invocation.getArguments()[0];
+        if(paramComment != null && 
+            paramComment.getCommentId() \\>0 &&
+            paramComment.getContent().length()\\>0 &&
+            paramComment.getName().length()\\>0 &&
+            paramComment.getTeamName().length()\\>0 &&
+            paramComment.getSubmitDateTime()!=null &&
+            paramComment.getUserId()\\>0 &&
+            paramComment.getVoteId()\\>0
+            ){
+          return 1;
+        }else{
+          return 0;
+        } 
+      }
+    };
+        ......
+        }
+```
+ 
+ @before는 Test가 실행되기 이전에 실행되는 부분이다.
+ 사전에 Answer을 정의한다. Answer 정의를 통해 해당 함수가 실행되었을 때(DB에서 읽어오기) DB와 같은 리턴이 이루어 지도록 미리 설정하는 부분이다.
+
+* 해당 함수로 들어올 파라미터를 읽어온다. 이 파라미터는 이후 테스트에 사용된다.
+``` java
+    Comment paramComment = (Comment)invocation.getArguments()[0];
+```
+* 해당 함수로 들어올 파라미터를 읽어온다. 이 파라미터는 이후 테스트에 사용된다.
+
+``` java
+   if(paramComment != null && 
+            paramComment.getCommentId() \\>0 &&
+            paramComment.getContent().length()\\>0 &&
+            paramComment.getName().length()\\>0 &&
+            paramComment.getTeamName().length()\\>0 &&
+            paramComment.getSubmitDateTime()!=null &&
+            paramComment.getUserId()\\>0 &&
+            paramComment.getVoteId()\\>0
+            ){
+          return 1;
+        }else{
+          return 0;
+        } 
+```
+* DB에서 리턴할 값을 예상해 리턴값을 반환한다. 해당 쿼리는 insert쿼리로 제대로 된 값이 입려되지 않았을 경우 0을 리턴, 성공시 1을 리턴하도록 한다.
+* commentId는 0보다 커야하고 Content, Name을 존재해야한다. 이와 같은 조건으로 DB와 동일하게 리턴하도록 설정한다.
+
+
+## 테스트
+
+``` java
+        @Test
+	 public void setComment_sucess() {
+		given(commentMapper.insertComment(comment)).willAnswer(setCommentsAnswer);
+		int test_SetComment = commentDAO.setComment(comment);
+		assertThat(test_SetComment,is(1));
+	 }
+	 @Test
+	 public void setComment_fail() {
+		Comment errorComment = new Comment();
+		given(commentMapper.insertComment(errorComment)).willAnswer(setCommentsAnswer);
+		int test_SetComment = commentDAO.setComment(errorComment);
+		assertThat(test_SetComment,is(0));
+	 }
+```
+
+* 테스트는 성공조건, 실패조건으로 구성되어야 하며 여러 방법으로 실패조건을 만들어 테스트 해야한다. 
+ex) Comment가 null인조건, Comment에 값이 없는 조건 등
+* given(조건, 초기상태)
+파라미터 값으로 에러값과 정상 값을 전달받아 부분은 Answer에서 수행하도록 했다. honorContents는 Before에서 정의하였다.
+* when(상황,  행동)
+```
+int test_SetComment = commentDAO.setComment(comment); 
+```
+DAO내의 함수를 실행하여 값을 받아낸다.
+* then(결과)
+조건과 상황에 따라 실패 성공을 비교하여 결과를 도출한다.
