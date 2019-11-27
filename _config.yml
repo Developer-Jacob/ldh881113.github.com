@@ -9,13 +9,13 @@ name:               "개발자는 눈아프다!"
 
 author:
   name:             임덕현
-  facebook:         ldh881113
-  twitter:          your-id
-  github:           ldh881113
-  linkedin:         your-id
-  medium:           your-id
-  tumblr:           your-id
-  email:            deokhyeon.lim@nhnent.com
+  facebook:         
+  twitter:          
+  github:           DevelopoerJcob
+  linkedin:         
+  medium:           
+  tumblr:           
+  email:            deokhyeon.lim@nhn.com
 
 # Google-analytics
 google-analytics:
@@ -23,11 +23,11 @@ google-analytics:
 
 # Disqus
 disqus:
-  id:               "ldh881113"
+  id:               "DeveloperJcob"
 
 # URL
 #url:                "https://AWEEKJ.github.io" # the base hostname & protocol for your site
-url:                "http://ldh881113.github.io" # use this url when develop
+url:                "http://DeveloperJcob.github.io" # use this url when develop
 baseurl:            "" # the subpath of your site, e.g. /blog
 
 
@@ -53,7 +53,7 @@ nav:
   - name:           "Tags"
     url:            "/tags"
   - name:           "Github"
-    url:            "https://github.com/ldh881113"
+    url:            "https://github.com/DeveloperJcob"
 
 
 
